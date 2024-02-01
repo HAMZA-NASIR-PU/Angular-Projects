@@ -14,11 +14,12 @@ import { BaseRepository } from './services/BaseRepository/BaseRepository';
 export class AppComponent implements OnInit {
   title = 'understanding-dependency-injection-angular17';
   constructor(private baseRepository: BaseRepository) {
-
+    console.log("AppComponent constrcutor called...");
   }
 
   ngOnInit(): void {
     console.log("Inside App component = " + this.baseRepository.func2());
-    this.baseRepository.func1();
+    console.log("Inside App Component = ");
+    this.baseRepository.func1()
   }
 }

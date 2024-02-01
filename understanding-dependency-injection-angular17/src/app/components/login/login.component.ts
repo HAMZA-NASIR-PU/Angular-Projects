@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BaseRepository } from '../../services/BaseRepository/BaseRepository';
 
 @Component({
   selector: 'app-login',
@@ -8,8 +9,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit {
-  constructor() {
-
+  constructor(private baseRepository: BaseRepository) {
+    console.log("LoginComponent constrcutor called...");
   }
   ngOnInit(): void {
 
