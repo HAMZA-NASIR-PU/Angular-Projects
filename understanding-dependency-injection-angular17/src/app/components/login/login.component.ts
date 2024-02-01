@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    console.log("Inside Login component = "+ this.studentRepository.getStudentName(1));
+    console.log("Inside Login component = " + this.studentRepository.getStudentName(1));
 
   }
 }
