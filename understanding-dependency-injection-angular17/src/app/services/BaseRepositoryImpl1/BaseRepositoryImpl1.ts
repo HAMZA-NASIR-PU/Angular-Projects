@@ -1,7 +1,9 @@
 import { BaseRepository } from "../BaseRepository/BaseRepository";
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class BaseRepositoryImpl1 implements BaseRepository {
     constructor() {
         console.log("Constructor of BaseRepositoryImpl1 called...");

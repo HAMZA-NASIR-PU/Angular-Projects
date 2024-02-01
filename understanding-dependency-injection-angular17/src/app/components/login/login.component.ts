@@ -9,7 +9,7 @@ import { BaseRepository } from '../../services/BaseRepository/BaseRepository';
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit {
-  constructor(private baseRepository: BaseRepository) {
+  constructor() {
     console.log("LoginComponent constrcutor called...");
   }
   ngOnInit(): void {
