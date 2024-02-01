@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { StudentRepositoryService } from './services/student-repository.service';
 import { LoginComponent } from './components/login/login.component';
+import { BaseRepository } from './services/BaseRepository/BaseRepository';
 
 @Component({
   selector: 'app-root',
@@ -13,11 +13,12 @@ import { LoginComponent } from './components/login/login.component';
 })
 export class AppComponent implements OnInit {
   title = 'understanding-dependency-injection-angular17';
-  constructor(private studentRepository: StudentRepositoryService) {
+  constructor(private baseRepository: BaseRepository) {
 
   }
 
   ngOnInit(): void {
-    console.log("Inside App component = " + this.studentRepository.getStudentName(1));
+    console.log("Inside App component = " + this.baseRepository.func2());
+    this.baseRepository.func1();
   }
 }
