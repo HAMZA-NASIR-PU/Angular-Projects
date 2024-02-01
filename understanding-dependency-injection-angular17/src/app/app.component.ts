@@ -1,32 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
-import { BaseRepository } from './services/BaseRepository/BaseRepository';
-import { BaseRepositoryImpl3 } from './services/BaseRepositoryImpl3/BaseRepositoryImpl3';
-import { BaseRepositoryImpl1 } from './services/BaseRepositoryImpl1/BaseRepositoryImpl1';
+import { Comp1Component } from './components/comp1/comp1.component';
+import { Comp2Component } from './components/comp2/comp2.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, LoginComponent],
+  imports: [CommonModule, RouterOutlet, Comp1Component, Comp2Component],
   providers: [],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'understanding-dependency-injection-angular17';
-  // constructor(private baseRepository: BaseRepository) {
-  //   console.log("AppComponent constrcutor called...");
-  // }
 
-  constructor(private baseRepository: BaseRepositoryImpl1) {
-    console.log("AppComponent constrcutor called...");
-  }
-
-  ngOnInit(): void {
-    // console.log("Inside App component = " + this.baseRepository.func2());
-    // console.log("Inside App Component = ");
-    // this.baseRepository.func1()
-  }
 }
