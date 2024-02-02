@@ -1,24 +1,17 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-
+import { CourseCardComponent } from './course-card/course-card.component';
+import { COURSES } from './db-data';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [CommonModule, RouterOutlet, CourseCardComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  data = {
-    title: "This is my title"
-  };
-  title = this.data.title;
-  onButtonClicked() {
-    alert("Button clicked")
-  }
-
-  onKeyUp(newTitle: string) {
-    this.data.title = newTitle;
-  }
+  coreCourse = COURSES[0];
+  rxjsCourse = COURSES[1];
+  ngrxCourse = COURSES[2];
 }

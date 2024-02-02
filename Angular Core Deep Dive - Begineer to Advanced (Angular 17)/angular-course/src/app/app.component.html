@@ -1,3 +1,17 @@
-<h1>Welcome to {{data.title}}</h1>
-<input class="demo" (keyup)="onKeyUp(titleInput.value)" [value]="data.title" #titleInput>
-<button (click)="onButtonClicked()">Alert Button</button>
+<div class="top-menu">
+
+  <img class="logo" src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
+
+</div>
+
+
+<div class="courses">
+
+
+  <course-card [course]="coreCourse"></course-card>
+
+  <course-card [course]="rxjsCourse"></course-card>
+
+  <course-card [course]="ngrxCourse"></course-card>
+
+</div>
