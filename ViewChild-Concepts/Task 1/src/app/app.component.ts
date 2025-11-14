@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +10,12 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 export class AppComponent implements AfterViewInit {
   @ViewChild('paraRef') para!: ElementRef<HTMLParagraphElement>;
 
-  ngAfterViewInit(): void {
-    console.log(this.para.nativeElement.textContent);
+  ngAfterViewInit() {
+    console.log('****************** AfterViewInit Lifecycle...');
+    console.log(this.para.nativeElement);
   }
 
   changeText() {
-    this.para.nativeElement.textContent = 'Text changed using ViewChild!';
+    this.para.nativeElement.textContent = 'Text changed by ViewChild!';
   }
 }
