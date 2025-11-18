@@ -1,4 +1,4 @@
-import { CommonModule, NgForOf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 import {
   Component,
@@ -11,7 +11,7 @@ import {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NgForOf],
+  imports: [CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
