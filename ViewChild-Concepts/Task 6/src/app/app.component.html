@@ -1,0 +1,9 @@
+<form [formGroup]="form">
+  <input
+    #emailInput
+    type="email"
+    formControlName="email"
+    placeholder="Enter email"
+  />
+  <button type="button" (click)="focusEmail()">Focus Email</button>
+</form>
