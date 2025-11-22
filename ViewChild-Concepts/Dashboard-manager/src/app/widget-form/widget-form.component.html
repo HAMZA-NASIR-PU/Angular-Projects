@@ -1,0 +1,5 @@
+<form [formGroup]="form" (ngSubmit)="addWidget()">
+    <input formControlName="title" placeholder="Widget Title" />
+    <input formControlName="color" type="color" />
+    <button type="submit">Add Widget</button>
+</form>

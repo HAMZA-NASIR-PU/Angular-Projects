@@ -1,0 +1,8 @@
+<h2>Dashboard Manager</h2>
+<app-widget-form (widgetAdded)="addWidget($event)"></app-widget-form>
+
+<button (click)="highlightFirst()">Highlight First Widget</button>
+<button (click)="clearAll()">Clear All Widgets</button>
+
+<ng-template #widgetContainer></ng-template>
+<p appHighlight>Use ViewChild with Directive!</p>

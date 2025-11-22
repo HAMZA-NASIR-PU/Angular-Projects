@@ -1,0 +1,11 @@
+.widget {
+    padding: 16px;
+    border-radius: 10px;
+    color: white;
+    margin-bottom: 10px;
+    transition: transform 0.3s;
+}
+
+.widget:hover {
+    transform: scale(1.5);
+}
