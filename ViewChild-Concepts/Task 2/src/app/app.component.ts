@@ -17,11 +17,11 @@ export class AppComponent implements AfterViewInit, AfterViewChecked {
   @ViewChild(CounterComponent) counter!: CounterComponent;
 
   ngAfterViewInit(): void {
-    console.log('********** AfterViewInit called *************');
+    console.log('********** AfterViewInit of AppComponent *************');
   }
 
   ngAfterViewChecked(): void {
-    console.log('********* AfterViewChecked called ***********');
+    console.log('********* AfterViewChecked of AppComponent ***********');
   }
 
   increment() {
