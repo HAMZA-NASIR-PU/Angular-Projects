@@ -6,7 +6,6 @@ import {
   QueryList,
 } from '@angular/core';
 
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { HighlightDirective } from './directives/highlight/highlight.directive';
 
 @Component({
@@ -20,14 +19,17 @@ export class AppComponent {
   @ViewChild(HighlightDirective) highlighter!: HighlightDirective;
 
   @ViewChildren(HighlightDirective)
-  highlighters!: QueryList<HighlightDirective>;  // Access all elements in the DOm that have appHighlight directive.
+  highlighters!: QueryList<HighlightDirective>;  // Access all elements in the DOM that have appHighlight directive.
+
+  @ViewChild('highlightMe', { read: HighlightDirective }) highlighter2!: HighlightDirective;
 
   highlight() {
     this.highlighter.apply('yellow');
   }
 
   highlightAll() {
-    debugger;
     this.highlighters.forEach((h) => h.apply('yellow'));
+
+    this.highlighter2.apply('green');
   }
 }
