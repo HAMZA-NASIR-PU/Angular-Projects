@@ -1,0 +1,62 @@
+<div style="max-width: 400px; margin: 40px auto; font-family: Arial">
+  <h2>Registration Form</h2>
+
+  <form [formGroup]="registrationForm" (ngSubmit)="submitForm()">
+    <!-- Full Name -->
+    <label>Full Name</label>
+    <input type="text" formControlName="fullName" />
+    <div
+      *ngIf="
+        registrationForm.get('fullName')?.touched &&
+        registrationForm.get('fullName')?.invalid
+      "
+      style="color: red"
+    >
+      Full name is required.
+    </div>
+
+    <br /><br />
+
+    <!-- Email -->
+    <label>Email</label>
+    <input type="email" formControlName="email" />
+    <div
+      *ngIf="
+        registrationForm.get('email')?.touched &&
+        registrationForm.get('email')?.invalid
+      "
+      style="color: red"
+    >
+      <span *ngIf="registrationForm.get('email')?.errors?.['required']">
+        Email is required.
+      </span>
+      <span *ngIf="registrationForm.get('email')?.errors?.['email']">
+        Invalid email format.
+      </span>
+    </div>
+
+    <br /><br />
+
+    <!-- Password -->
+    <label>Password</label>
+    <input type="password" formControlName="password" />
+    <div
+      *ngIf="
+        registrationForm.get('password')?.touched &&
+        registrationForm.get('password')?.invalid
+      "
+      style="color: red"
+    >
+      <span *ngIf="registrationForm.get('password')?.errors?.['required']">
+        Password is required.
+      </span>
+      <span *ngIf="registrationForm.get('password')?.errors?.['minlength']">
+        Minimum length is 6 characters.
+      </span>
+    </div>
+
+    <br /><br />
+
+    <button type="submit" [disabled]="registrationForm.invalid">Submit</button>
+  </form>
+</div>
