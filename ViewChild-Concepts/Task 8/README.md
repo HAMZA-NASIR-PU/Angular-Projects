@@ -19,7 +19,7 @@ this.paginator.page.subscribe((res:PageEvent) => {
 });
 ```
 
-(Sort Code)[https://github.com/angular/components/blob/main/src/material/sort/sort.ts]
+[Sort Code](https://github.com/angular/components/blob/main/src/material/sort/sort.ts)
 
 
-(Paginator Code)[https://github.com/angular/components/blob/main/src/material/paginator/paginator.ts]
+[Paginator Code](https://github.com/angular/components/blob/main/src/material/paginator/paginator.ts)
