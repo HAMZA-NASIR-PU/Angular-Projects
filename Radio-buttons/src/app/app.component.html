@@ -1,0 +1,19 @@
+<form (ngSubmit)="submitForm()">
+  <div *ngFor="let status of statusList">
+    <label>
+      <input
+        type="radio"
+        name="status"
+        [value]="status"
+        [(ngModel)]="selectedStatus"
+      />
+      {{ statusLabels[status] }}
+    </label>
+  </div>
+
+  <button type="submit">Save Status</button>
+</form>
+
+<p *ngIf="selectedStatus">
+  Selected: {{ statusLabels[selectedStatus] }} ({{ selectedStatus }})
+</p>
