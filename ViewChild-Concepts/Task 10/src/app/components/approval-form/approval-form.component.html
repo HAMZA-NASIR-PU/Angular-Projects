@@ -1,0 +1,75 @@
+<form #formRef="ngForm" (ngSubmit)="submit()">
+  <!-- Radio Buttons -->
+  <fieldset>
+    <legend>Approval Status</legend>
+
+    <div *ngFor="let status of statuses">
+      <input
+        type="radio"
+        name="status"
+        [(ngModel)]="model.status"
+        [value]="status"
+        [id]="status"
+        required
+        #statusCtrl="ngModel"
+      />
+      <label [for]="status">{{ approvalStatusLabels[status] }}</label>
+    </div>
+    <input
+      type="radio"
+      name="status"
+      [(ngModel)]="model.status"
+      value="INVALID_STATUS"
+      id="aaaa"
+      required
+      #statusCtrl="ngModel"
+    />
+    <label for="aaaa">INVALID STATUS </label>
+
+    <div
+      style="color: red"
+      *ngIf="formRef.submitted && formRef.controls['status']?.invalid"
+    >
+      Please select a status
+    </div>
+
+    <!-- The following line has some serious consequences. -->
+    <!-- <div style="color: red" *ngIf="formRef.submitted && statusCtrl.invalid">
+      Please select a status
+    </div> -->
+  </fieldset>
+
+  <br />
+
+  <!-- Input Field -->
+  <div>
+    <label>Comments</label>
+    <input
+      type="text"
+      required
+      [(ngModel)]="model.comments"
+      #commentsRef="ngModel"
+      name="comments"
+    />
+    <div *ngIf="formRef.submitted && commentsRef.errors" style="color: red">
+      Comments are mandatory.
+    </div>
+  </div>
+
+  <!-- Date Picker -->
+  <div>
+    <label>Select Date</label>
+    <input
+      type="date"
+      [(ngModel)]="model.selectedDate"
+      name="selectedDate"
+      #selectedDate="ngModel"
+      required
+    />
+    <div *ngIf="formRef.submitted && selectedDate.errors" style="color: red">
+      Date is mandatory.
+    </div>
+  </div>
+
+  <button type="submit">Submit</button>
+</form>
