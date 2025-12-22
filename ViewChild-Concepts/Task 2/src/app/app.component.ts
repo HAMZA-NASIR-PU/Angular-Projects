@@ -16,6 +16,10 @@ import { CounterComponent } from './counter/counter.component';
 export class AppComponent implements AfterViewInit, AfterViewChecked {
   @ViewChild(CounterComponent) counter!: CounterComponent;
 
+  constructor() {
+    console.log('**************** Constructor of App Cmponent');
+  }
+
   ngAfterViewInit(): void {
     console.log('********** AfterViewInit of AppComponent *************');
   }

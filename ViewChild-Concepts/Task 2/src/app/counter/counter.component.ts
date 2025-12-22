@@ -7,15 +7,23 @@ import { Component, AfterViewInit, AfterViewChecked } from '@angular/core';
   templateUrl: './counter.component.html',
   styleUrl: './counter.component.css',
 })
-export class CounterComponent implements AfterViewInit, AfterViewChecked{
+export class CounterComponent implements AfterViewInit, AfterViewChecked {
   count = 0;
 
+  constructor() {
+    console.log('**************** Constructor of Counter Cmponent');
+  }
+
   ngAfterViewInit() {
-    console.log("**************   AfterViewInit of CounterComponent  **************");
+    console.log(
+      '**************   AfterViewInit of CounterComponent  **************'
+    );
   }
 
   ngAfterViewChecked() {
-    console.log("*************  AfterViewChecked of CounterComponent  ***************");
+    console.log(
+      '*************  AfterViewChecked of CounterComponent  ***************'
+    );
   }
 
   increment() {

@@ -16,7 +16,6 @@ import {
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit, AfterViewInit {
-
   // See that Article: https://upmostly.com/angular/what-does-the-static-property-on-viewchild-do
 
   @ViewChild('myPara1') para1!: ElementRef<HTMLParagraphElement>;
@@ -27,6 +26,10 @@ export class AppComponent implements OnInit, AfterViewInit {
   isVisible = false;
 
   isVisible2 = true;
+
+  constructor() {
+    console.log('************ Constructor of App Component ******************');
+  }
 
   ngOnInit() {
     console.log('*************** OnInit of App Component ********************');
