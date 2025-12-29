@@ -4,17 +4,23 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { filter, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { LocationService } from './services/location.service';
+import { UiEventExampleComponent } from './ui-event-example/ui-event-example.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, JsonPipe],
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    JsonPipe,
+    UiEventExampleComponent,
+  ],
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit, OnDestroy {
   form!: FormGroup;
 
-  countries: string[] = ['USA', 'India'];
+  countries: string[] = [];
 
   states: string[] = [];
   cities: string[] = [];
@@ -29,11 +35,9 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.initForm();
     this.fetchCountries();
-    this.handleCountryChanges();
-    this.handleStateChanges();
 
     // ---- mimic edit / API prefill ----
-    // this.prefillForm();
+    this.prefillForm();
   }
 
   private fetchCountries() {
@@ -48,9 +52,7 @@ export class AppComponent implements OnInit, OnDestroy {
       state: [''],
       city: [''],
     });
-  }
 
-  private handleCountryChanges(): void {
     this.form
       .get('country')!
       .valueChanges.pipe(
@@ -64,9 +66,7 @@ export class AppComponent implements OnInit, OnDestroy {
           this.states = stateList;
         });
       });
-  }
 
-  private handleStateChanges(): void {
     this.form
       .get('state')!
       .valueChanges.pipe(

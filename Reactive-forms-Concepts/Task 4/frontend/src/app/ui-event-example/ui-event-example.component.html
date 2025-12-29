@@ -1,8 +1,12 @@
-<form [formGroup]="form">
+<form #form="ngForm">
   <!-- Country -->
   <label>
     Country:
-    <select formControlName="country">
+    <select
+      [(ngModel)]="model.country"
+      name="country"
+      (change)="onCountryChange()"
+    >
       <option value="">-- Select Country --</option>
       <option *ngFor="let c of countries" [value]="c">
         {{ c }}
@@ -15,7 +19,7 @@
   <!-- State -->
   <label>
     State:
-    <select formControlName="state">
+    <select [(ngModel)]="model.state" name="state" (change)="onStateChange()">
       <option value="">-- Select State --</option>
       <option *ngFor="let s of states" [value]="s">
         {{ s }}
@@ -28,7 +32,7 @@
   <!-- City -->
   <label>
     City:
-    <select formControlName="city">
+    <select [(ngModel)]="model.city" name="city">
       <option value="">-- Select City --</option>
       <option *ngFor="let c of cities" [value]="c">
         {{ c }}
@@ -40,5 +44,3 @@
 <hr />
 
 <pre>{{ form.value | json }}</pre>
-
-<app-ui-event-example />
