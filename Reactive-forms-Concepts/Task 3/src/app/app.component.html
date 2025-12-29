@@ -1,0 +1,59 @@
+<div style="max-width: 400px; margin: 40px auto; font-family: Arial;">
+  <h2>Nested FormGroup Example</h2>
+
+  <form [formGroup]="registrationForm" (ngSubmit)="submitForm()">
+
+    <!-- Full Name -->
+    <label>Full Name</label>
+    <input type="text" formControlName="fullName" />
+    <div *ngIf="registrationForm.get('fullName')?.touched 
+                && registrationForm.get('fullName')?.invalid"
+         style="color:red;">
+      Full name is required.
+    </div>
+
+    <br><br>
+
+    <!-- NESTED GROUP: contact -->
+    <div formGroupName="contact">
+
+      <!-- Email -->
+      <label>Email</label>
+      <input type="email" formControlName="email" />
+      <div *ngIf="contactGroup?.get('email')?.touched 
+                  && contactGroup?.get('email')?.invalid"
+           style="color:red;">
+        <span *ngIf="contactGroup?.get('email')?.errors?.['required']">
+          Email is required.
+        </span>
+        <span *ngIf="contactGroup?.get('email')?.errors?.['email']">
+          Invalid email format.
+        </span>
+      </div>
+
+      <br><br>
+
+      <!-- Phone -->
+      <label>Phone</label>
+      <input type="text" formControlName="phone" />
+      <div *ngIf="contactGroup?.get('phone')?.touched 
+                  && contactGroup?.get('phone')?.invalid"
+           style="color:red;">
+        <span *ngIf="contactGroup?.get('phone')?.errors?.['required']">
+          Phone is required.
+        </span>
+        <span *ngIf="contactGroup?.get('phone')?.errors?.['pattern']">
+          Phone must be 11 digits.
+        </span>
+      </div>
+
+    </div>
+
+    <br><br>
+
+    <button type="submit" [disabled]="registrationForm.invalid">
+      Submit
+    </button>
+
+  </form>
+</div>

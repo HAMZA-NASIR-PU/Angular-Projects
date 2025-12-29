@@ -2,9 +2,10 @@ import { Directive, HostListener, Output, EventEmitter } from '@angular/core';
 
 @Directive({
   selector: '[appClickTracker]',
-  standalone: true,
+  standalone: true
 })
 export class ClickTrackerDirective {
+
   @Output() track = new EventEmitter<string>();
 
   @HostListener('click')
