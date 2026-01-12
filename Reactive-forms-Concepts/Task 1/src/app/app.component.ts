@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import {
   FormBuilder,
@@ -7,6 +7,7 @@ import {
   ReactiveFormsModule,
   FormGroup,
 } from '@angular/forms';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -15,15 +16,35 @@ import {
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   registrationForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
     this.registrationForm = this.fb.group({
       fullName: ['', Validators.required],
-      email: ['', Validators.email],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
+  }
+
+  ngOnInit() {
+    // Understanding the use of Observables in reactive forms on a FormGroup
+    // this.registrationForm.valueChanges.subscribe((obj: any) => {
+    //   debugger;
+    //   console.log(obj);
+    // });
+
+    this.registrationForm.valueChanges
+      .pipe(filter((data) => !this.isFormEmpty(data)))
+      .subscribe((data: any) => {
+        console.log('Form Data: ', data);
+      });
+  }
+
+  private isFormEmpty(data: any): boolean {
+    return Object.values(data).every(
+      (v) => v === null || v === undefined || v === ''
+    );
   }
 
   submitForm() {

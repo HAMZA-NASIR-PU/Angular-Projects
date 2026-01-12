@@ -3,8 +3,13 @@
 
   <form [formGroup]="registrationForm" (ngSubmit)="submitForm()">
     <!-- Full Name -->
-    <label>Full Name</label>
-    <input type="text" formControlName="fullName" />
+    <label for="fullName">Full Name</label>
+    <input
+      type="text"
+      id="fullName"
+      name="fullName"
+      formControlName="fullName"
+    />
     <div
       *ngIf="
         registrationForm.get('fullName')?.touched &&
@@ -18,8 +23,8 @@
     <br /><br />
 
     <!-- Email -->
-    <label>Email</label>
-    <input type="email" formControlName="email" />
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" formControlName="email" />
     <div
       *ngIf="
         registrationForm.get('email')?.touched &&
@@ -38,8 +43,13 @@
     <br /><br />
 
     <!-- Password -->
-    <label>Password</label>
-    <input type="password" formControlName="password" />
+    <label for="password">Password</label>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      formControlName="password"
+    />
     <div
       *ngIf="
         registrationForm.get('password')?.touched &&
