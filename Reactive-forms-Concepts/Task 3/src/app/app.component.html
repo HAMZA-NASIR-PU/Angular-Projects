@@ -1,59 +1,63 @@
-<div style="max-width: 400px; margin: 40px auto; font-family: Arial;">
-  <h2>Nested FormGroup Example</h2>
+<div style="max-width: 450px; margin: 40px auto; font-family: Arial">
+  <h2>FormArray Example — Phone Numbers</h2>
 
   <form [formGroup]="registrationForm" (ngSubmit)="submitForm()">
-
     <!-- Full Name -->
     <label>Full Name</label>
     <input type="text" formControlName="fullName" />
-    <div *ngIf="registrationForm.get('fullName')?.touched 
-                && registrationForm.get('fullName')?.invalid"
-         style="color:red;">
+    <div
+      *ngIf="
+        registrationForm.get('fullName')?.touched &&
+        registrationForm.get('fullName')?.invalid
+      "
+      style="color: red"
+    >
       Full name is required.
     </div>
 
-    <br><br>
+    <br /><br />
 
-    <!-- NESTED GROUP: contact -->
-    <div formGroupName="contact">
+    <!-- FormArray of phone numbers -->
+    <div formArrayName="phoneNumbers">
+      <div
+        *ngFor="let phoneGroup of phoneNumbers.controls; let i = index"
+        [formGroupName]="i"
+        style="margin-bottom: 15px"
+      >
+        <label>Phone {{ i + 1 }}</label>
+        <input type="text" formControlName="phone" />
 
-      <!-- Email -->
-      <label>Email</label>
-      <input type="email" formControlName="email" />
-      <div *ngIf="contactGroup?.get('email')?.touched 
-                  && contactGroup?.get('email')?.invalid"
-           style="color:red;">
-        <span *ngIf="contactGroup?.get('email')?.errors?.['required']">
-          Email is required.
-        </span>
-        <span *ngIf="contactGroup?.get('email')?.errors?.['email']">
-          Invalid email format.
-        </span>
+        <!-- Remove button -->
+        <button
+          type="button"
+          (click)="removePhone(i)"
+          *ngIf="phoneNumbers.length > 1"
+          style="margin-left: 10px"
+        >
+          Remove
+        </button>
+
+        <!-- Validation -->
+        <div
+          *ngIf="
+            phoneGroup.get('phone')?.touched && phoneGroup.get('phone')?.invalid
+          "
+          style="color: red"
+        >
+          <span *ngIf="phoneGroup.get('phone')?.errors?.['required']"
+            >Phone is required.</span
+          >
+          <span *ngIf="phoneGroup.get('phone')?.errors?.['pattern']"
+            >Phone must be 11 digits.</span
+          >
+        </div>
       </div>
-
-      <br><br>
-
-      <!-- Phone -->
-      <label>Phone</label>
-      <input type="text" formControlName="phone" />
-      <div *ngIf="contactGroup?.get('phone')?.touched 
-                  && contactGroup?.get('phone')?.invalid"
-           style="color:red;">
-        <span *ngIf="contactGroup?.get('phone')?.errors?.['required']">
-          Phone is required.
-        </span>
-        <span *ngIf="contactGroup?.get('phone')?.errors?.['pattern']">
-          Phone must be 11 digits.
-        </span>
-      </div>
-
     </div>
 
-    <br><br>
+    <button type="button" (click)="addPhone()">+ Add Phone</button>
 
-    <button type="submit" [disabled]="registrationForm.invalid">
-      Submit
-    </button>
+    <br /><br />
 
+    <button type="submit" [disabled]="registrationForm.invalid">Submit</button>
   </form>
 </div>
