@@ -1,0 +1,81 @@
+<div style="max-width: 450px; margin: 40px auto; font-family: Arial">
+  <h2>Cross-Field Validation Example</h2>
+
+  <form [formGroup]="registrationForm" (ngSubmit)="submitForm()">
+    <div style="margin-bottom: 16px">
+      <label for="role">Role</label>
+      <br />
+      <select id="role" formControlName="role">
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+      </select>
+    </div>
+
+    <div style="margin-bottom: 16px">
+      <label for="password">Password</label>
+      <br />
+      <input id="password" type="password" formControlName="password" />
+
+      <div
+        *ngIf="
+          passwordControl?.touched && passwordControl?.errors?.['required']
+        "
+        style="color: red"
+      >
+        Password is required.
+      </div>
+    </div>
+
+    <div style="margin-bottom: 16px">
+      <label for="confirmPassword">Confirm Password</label>
+      <br />
+      <input
+        id="confirmPassword"
+        type="password"
+        formControlName="confirmPassword"
+      />
+
+      <div
+        *ngIf="
+          confirmPasswordControl?.touched &&
+          confirmPasswordControl?.errors?.['required']
+        "
+        style="color: red"
+      >
+        Confirm password is required.
+      </div>
+    </div>
+
+    <div
+      *ngIf="
+        registrationForm.touched &&
+        registrationForm.errors?.['passwordMismatch']
+      "
+      style="color: red; margin-bottom: 8px"
+    >
+      Password and confirm password must match.
+    </div>
+
+    <div
+      *ngIf="
+        registrationForm.touched &&
+        registrationForm.errors?.['adminPasswordTooShort']
+      "
+      style="color: red; margin-bottom: 8px"
+    >
+      Admin password must be at least 10 characters.
+    </div>
+
+    <div
+      *ngIf="
+        registrationForm.touched &&
+        registrationForm.errors?.['userPasswordTooShort']
+      "
+      style="color: red; margin-bottom: 8px"
+    >
+      User password must be at least 6 characters.
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+</div>
