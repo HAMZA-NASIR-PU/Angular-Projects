@@ -9,11 +9,12 @@ import {
   ValidationErrors,
   AbstractControl,
 } from '@angular/forms';
+import { AddressComponent } from './address/address.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule,AddressComponent],
   templateUrl: './app.component.html',
 })
 export class AppComponent {

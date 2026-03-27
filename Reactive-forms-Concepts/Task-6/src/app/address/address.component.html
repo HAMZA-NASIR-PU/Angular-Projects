@@ -1,0 +1,85 @@
+<div style="max-width: 450px; margin: 40px auto; font-family: Arial">
+  <form [formGroup]="profileForm" (ngSubmit)="submitForm()">
+    <!-- First Name -->
+    <div>
+      <label for="firstName">First Name</label>
+      <input id="firstName" formControlName="firstName" type="text" />
+      <div
+        *ngIf="
+          profileForm.get('firstName')?.touched &&
+          profileForm.get('firstName')?.invalid
+        "
+        style="color: red"
+      >
+        First Name is required.
+      </div>
+    </div>
+
+    <!-- Last Name -->
+    <div>
+      <label for="lastName">Last Name</label>
+      <input id="lastName" formControlName="lastName" type="text" />
+      <div
+        *ngIf="
+          profileForm.get('lastName')?.touched &&
+          profileForm.get('lastName')?.invalid
+        "
+        style="color: red"
+      >
+        Last Name is required.
+      </div>
+    </div>
+
+    <!-- Address Group -->
+    <div formGroupName="address">
+      <!-- Country Dropdown -->
+      <div>
+        <label for="country">Country</label>
+        <select id="country" formControlName="country">
+          <option value="">Select Country</option>
+          <option *ngFor="let country of countries" [value]="country.code">
+            {{ country.name }}
+          </option>
+        </select>
+        <div
+          *ngIf="
+            profileForm.get('address.country')?.touched &&
+            profileForm.get('address.country')?.invalid
+          "
+          style="color: red"
+        >
+          Country is required.
+        </div>
+      </div>
+
+      <!-- Postal Code -->
+      <div>
+        <label for="postalCode">Postal Code</label>
+        <input id="postalCode" formControlName="postalCode" type="text" />
+        <!-- profileForm.get('address')?.invalid ==> validation on entire group. -->
+        <div
+          *ngIf="
+            profileForm.get('address.postalCode')?.touched &&
+            profileForm.get('address')?.invalid
+          "
+        >
+          <span
+            *ngIf="profileForm.get('address.postalCode')?.errors?.['required']"
+            style="color: red"
+          >
+            Postal Code is required.
+          </span>
+          <span
+            *ngIf="profileForm.get('address')?.errors?.['invalidLength']"
+            style="color: red"
+          >
+            {{ profileForm.get("address")?.errors?.["invalidLength"] }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" [disabled]="profileForm.invalid">Submit</button>
+  </form>
+</div>
