@@ -1,0 +1,85 @@
+<div style="max-width: 400px; margin: 40px auto; font-family: Arial">
+  <h2>Registration Form</h2>
+
+  <form [formGroup]="registrationForm" (ngSubmit)="submitForm()">
+    <!-- Full Name -->
+    <label for="fullName">Full Name</label>
+    <input
+      type="text"
+      id="fullName"
+      name="fullName"
+      formControlName="fullName"
+    />
+    <div
+      *ngIf="
+        registrationForm.get('fullName')?.touched &&
+        registrationForm.get('fullName')?.invalid
+      "
+      style="color: red"
+    >
+      Full name is required.
+    </div>
+
+    <br /><br />
+
+    <!-- Email -->
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" formControlName="email" />
+    <div
+      *ngIf="
+        registrationForm.get('email')?.touched &&
+        registrationForm.get('email')?.invalid
+      "
+      style="color: red"
+    >
+      <span *ngIf="registrationForm.get('email')?.errors?.['required']">
+        Email is required.
+      </span>
+      <span *ngIf="registrationForm.get('email')?.errors?.['email']">
+        Invalid email format.
+      </span>
+    </div>
+
+    <br /><br />
+
+    <!-- Password -->
+    <label for="password">Password</label>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      formControlName="password"
+    />
+    <div
+      *ngIf="
+        registrationForm.get('password')?.touched &&
+        registrationForm.get('password')?.invalid
+      "
+      style="color: red"
+    >
+      <div *ngIf="registrationForm.get('password')?.errors?.['required']">
+        Password is required.
+      </div>
+
+      <div *ngIf="registrationForm.get('password')?.errors?.['noUpperCase']">
+        Password must contain at least 1 uppercase letter.
+      </div>
+
+      <div *ngIf="registrationForm.get('password')?.errors?.['noNumber']">
+        Password must contain at least 1 number.
+      </div>
+
+      <div *ngIf="registrationForm.get('password')?.errors?.['hasWhiteSpace']">
+        Password must not contain whitespace.
+      </div>
+
+      <div *ngIf="registrationForm.get('password')?.errors?.['minLength']">
+        Password must be at least 8 characters long.
+      </div>
+    </div>
+
+    <br /><br />
+
+    <button type="submit" [disabled]="registrationForm.invalid">Submit</button>
+  </form>
+</div>
