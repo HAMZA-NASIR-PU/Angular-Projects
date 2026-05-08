@@ -1,0 +1,1 @@
+# Understanding the effect of conditions on static property of `ViewChild` - Task-9.
